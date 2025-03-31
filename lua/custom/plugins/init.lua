@@ -7,4 +7,5 @@
 ---@type LazySpec
 return {
   require 'custom.plugins.transparent',
+  require 'custom.plugins.typescript-tools',
 }
