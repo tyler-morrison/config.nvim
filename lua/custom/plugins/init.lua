@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  require 'custom.plugins.nightfox',
   require 'custom.plugins.transparent',
   require 'custom.plugins.typescript-tools',
 }
