@@ -64,4 +64,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+-- Buffer navigation
+vim.keymap.set('n', '<S-h>', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<S-l>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<CR>', { desc = '[B]uffer [D]elete' })
+vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope buffers<CR>', { desc = 'Quick buffer switch' })
+
+-- Copy file paths (for Slack/PRs)
+vim.keymap.set('n', '<leader>fp', function()
+  local path = vim.fn.expand('%')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, { desc = '[F]ile [P]ath (relative)' })
 -- vim: ts=2 sts=2 sw=2 et

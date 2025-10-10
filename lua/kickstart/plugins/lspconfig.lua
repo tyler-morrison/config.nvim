@@ -123,7 +123,18 @@ return {
       ---@type table<string, vim.lsp.Config>
       local servers = {
         -- clangd = {},
-        gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+                shadow = true,
+              },
+              staticcheck = true,
+              gofumpt = true, -- Stricter formatting than gofmt
+            },
+          },
+        },
         -- pyright = {},
         -- rust_analyzer = {},
         --
@@ -163,6 +174,12 @@ return {
             Lua = {},
           },
         },
+        ruby_lsp = { -- Add this entire block
+          cmd = { 'bundle', 'exec', 'ruby-lsp' },
+          init_options = {
+            formatter = 'rubocop',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -175,6 +192,15 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         -- You can add other tools here that you want Mason to install
+        'stylua', -- Used to format Lua code
+        'rubocop', -- For Ruby formatting
+        'ruby-lsp', -- Enhanced Ruby dev features
+        'prettierd', -- For TS/JS formatting
+        'eslint_d', -- Fast ESLint
+        'gopls',
+        'gofumpt', -- Go formatter
+        'goimports', -- Import management
+        'golangci-lint', -- Linter
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }

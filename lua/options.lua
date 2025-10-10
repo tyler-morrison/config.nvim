@@ -69,4 +69,7 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Suppress lspconfig deprecation warning (temporary until plugin updates)
+vim.deprecate = function() end
+
 -- vim: ts=2 sts=2 sw=2 et
