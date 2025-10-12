@@ -68,12 +68,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('n', '<S-h>', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<CR>', { desc = '[B]uffer [D]elete' })
+vim.keymap.set('n', '<leader>bo', '<cmd>%bd|e#|bd#<CR>', { desc = '[B]uffer [O]nly (close others)' })
+
 vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope buffers<CR>', { desc = 'Quick buffer switch' })
 
 -- Copy file paths (for Slack/PRs)
 vim.keymap.set('n', '<leader>fp', function()
-  local path = vim.fn.expand('%')
+  local path = vim.fn.expand '%'
   vim.fn.setreg('+', path)
   vim.notify('Copied: ' .. path)
 end, { desc = '[F]ile [P]ath (relative)' })
+
+-- Project-wide search and replace
+vim.keymap.set('n', '<leader>sr', function()
+  local word = vim.fn.expand '<cword>'
+  vim.cmd('Telescope live_grep default_text=' .. word)
+end, { desc = '[S]earch and [R]eplace current word' })
 -- vim: ts=2 sts=2 sw=2 et
