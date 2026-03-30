@@ -174,8 +174,11 @@ return {
             Lua = {},
           },
         },
-        ruby_lsp = { -- Add this entire block
-          cmd = { 'bundle', 'exec', 'ruby-lsp' },
+        ruby_lsp = {
+          -- Don't use `bundle exec` — ruby-lsp manages its own sub-bundle at .ruby-lsp/
+          -- so it works without being in the project Gemfile and respects per-project
+          -- Ruby versions set by rbenv/asdf/mise.
+          cmd = { 'ruby-lsp' },
           init_options = {
             formatter = 'rubocop',
           },
@@ -193,8 +196,8 @@ return {
       vim.list_extend(ensure_installed, {
         -- You can add other tools here that you want Mason to install
         'stylua', -- Used to format Lua code
-        'rubocop', -- For Ruby formatting
-        'ruby-lsp', -- Enhanced Ruby dev features
+        -- rubocop and ruby-lsp are managed per Ruby version via your version manager
+        -- (rbenv/asdf/mise), not Mason — run `gem install ruby-lsp rubocop` for each version
         'prettierd', -- For TS/JS formatting
         'eslint_d', -- Fast ESLint
         'gopls',

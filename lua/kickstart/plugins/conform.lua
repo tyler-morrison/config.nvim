@@ -33,7 +33,8 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        ruby = { 'rubocop' },
+        -- ruby formatting is handled by ruby-lsp (which manages its own rubocop bundle)
+        -- via the lsp_format = 'fallback' below — no explicit entry needed here
         go = { 'goimports', 'gofumpt' },
         javascript = { 'prettierd' },
         typescript = { 'prettierd' },
