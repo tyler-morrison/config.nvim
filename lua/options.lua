@@ -72,4 +72,8 @@ vim.o.confirm = true
 -- Suppress lspconfig deprecation warning (temporary until plugin updates)
 vim.deprecate = function() end
 
+-- Ensure Homebrew binaries are on PATH (fixes "npm: Executable not found" when
+-- Neovim is launched outside a login shell, e.g. from a GUI or Spotlight)
+vim.env.PATH = vim.env.PATH .. ':/opt/homebrew/bin'
+
 -- vim: ts=2 sts=2 sw=2 et
