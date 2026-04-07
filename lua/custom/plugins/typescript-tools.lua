@@ -13,9 +13,7 @@ return {
       -- Auto-organize imports on save
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = bufnr,
-        callback = function()
-          vim.cmd 'TSToolsOrganizeImports'
-        end,
+        callback = function() vim.cmd 'TSToolsOrganizeImports' end,
       })
     end,
     settings = {

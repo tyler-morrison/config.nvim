@@ -5,9 +5,7 @@ return {
     -- Auto-enable for markdown and text files
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { 'markdown', 'text', 'txt' },
-      callback = function()
-        vim.cmd 'PencilSoft'
-      end,
+      callback = function() vim.cmd 'PencilSoft' end,
     })
 
     -- Also trigger when entering a buffer (catches zen-mode case)
@@ -15,9 +13,7 @@ return {
       pattern = { '*.md', '*.markdown', '*.txt' },
       callback = function()
         -- Only activate if not already active
-        if vim.fn.exists '#pencil' == 0 then
-          vim.cmd 'PencilSoft'
-        end
+        if vim.fn.exists '#pencil' == 0 then vim.cmd 'PencilSoft' end
       end,
     })
 
