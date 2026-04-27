@@ -38,6 +38,7 @@ return {
         go = { 'goimports', 'gofumpt' },
         javascript = { 'prettierd' },
         typescript = { 'prettierd' },
+        python = { 'ruff_format' },
       },
     },
   },

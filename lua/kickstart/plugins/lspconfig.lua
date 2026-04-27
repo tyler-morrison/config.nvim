@@ -135,7 +135,22 @@ return {
             },
           },
         },
-        -- pyright = {},
+        pyright = {
+          settings = {
+            pyright = {
+              -- Use ruff for import organization instead of pyright's own
+              disableOrganizeImports = true,
+            },
+            python = {
+              pythonPath = '.venv/bin/python',
+              analysis = {
+                typeCheckingMode = 'basic',
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+              },
+            },
+          },
+        },
         -- rust_analyzer = {},
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -204,6 +219,8 @@ return {
         'gofumpt', -- Go formatter
         'goimports', -- Import management
         'golangci-lint', -- Linter
+        'pyright', -- Python LSP
+        'ruff', -- Python formatter
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
