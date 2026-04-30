@@ -189,6 +189,20 @@ return {
             Lua = {},
           },
         },
+        yamlls = {
+          settings = {
+            yaml = {
+              schemaStore = {
+                -- Let the server fetch schemas from SchemaStore.org
+                enable = true,
+                url = 'https://www.schemastore.org/api/json/catalog.json',
+              },
+              format = { enable = true },
+              validate = true,
+              completion = true,
+            },
+          },
+        },
         ruby_lsp = {
           -- Don't use `bundle exec` — ruby-lsp manages its own sub-bundle at .ruby-lsp/
           -- so it works without being in the project Gemfile and respects per-project
@@ -221,6 +235,7 @@ return {
         'golangci-lint', -- Linter
         'pyright', -- Python LSP
         'ruff', -- Python formatter
+        'yaml-language-server',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
